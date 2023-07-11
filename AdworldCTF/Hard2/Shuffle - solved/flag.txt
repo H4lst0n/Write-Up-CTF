@@ -1,0 +1,1 @@
+SECCON{Welcome to the SECCON 2014 CTF!}

@@ -1,0 +1,21 @@
+1: Phạm sai lầm đầu tiên Vì đây là lần đầu tiên tiếp xúc với hướng dẫn hoa, tôi đã đọc dòng mã này trong một thời gian
+ dài (unsigned int (__fastcall **)))input_flag)judge). ((unsigned int (__fastcall **)(char *))judge)(input_flag) nên được phân tích như vậy, 
+ unsigned int là loại trả về của hàm judge, (__fastcall **) là quy ước gọi của hàm và (char *) chỉ là một chuỗi chuỗi trích xuất các tiêu đề mảng của judge làm tên hàm. 
+
+2: Phạm sai lầm thứ hai: Tôi đã sử dụng phiên bản mới của IDA7.5, ở đây đã có một lỗi phân tích con trỏ, IDA7.5 trực tiếp coi nó là dữ liệu,
+ nếu tôi sử dụng C (biên soạn), P (tạo hàm), ở đầu judge, hiển thị lỗi phân tích con trỏ như bình thường:
+  (ps: nếu không nhấn C đôi khi IDA sẽ báo lỗi chức năng có hướng dẫn / dữ liệu không xác định tại địa chỉ được chỉ định.
+   Yêu cầu của bạn đã được đưa vào hàng đợi phân tích tự động.
+   Nhấn C có thể là một lời nhắc nhở rằng nó có thể được chuyển đổi thành dữ liệu)
+
+
+Đây là sai lầm đầu tiên: Vì đây là lần đầu tiên tiếp xúc với hướng dẫn hoa, đối với (*(unsigned int (__fastcall **) (char *))judge) (input_flag)) 
+dòng mã này tôi đã đọc trong một thời gian dài không hiểu, input_flag là chuỗi chúng tôi nhập, judge Trung Quốc là phán đoán, 
+dựa trên tên tiếng Trung trước đây thực sự là gợi ý, nhưng trước đó hiển thị judge[i] Điều này rõ ràng là một mảng ah, 
+judge (input_flag) không phải là địa chỉ đầu tiên của mảng cộng với Input_flag? Và cách chơi này???
+Sau đó, tôi đã đi xem wp (cười ~): 
+Họ có lẽ có nghĩa là judge là một tên chức năng, chức năng của tên chức năng judge này được tạo ra thông qua logic trước đó với dữ liệu.
+ Nhớ tới ngôn ngữ C hình như có kỹ xảo thông qua khâu chuỗi tạo ra mệnh lệnh mới, đột nhiên liền bừng tỉnh đại ngộ. 
+ Vì vậy, ở đây (*(unsigned int (__fastcall **)(char *))judge)(input_flag) nên được phân tích như vậy, 
+ unsigned int là loại trả về của hàm judge, (__fastcall **) là quy ước gọi của hàm, (char *) đây chỉ là một chuỗi chuỗi trích xuất 
+ các tiêu đề mảng của judge làm tên hàm.

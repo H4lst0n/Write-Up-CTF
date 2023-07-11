@@ -1,0 +1,3 @@
+upx -d +tên file
+
+flag{Upx_1s_n0t_a_d3liv3r_c0mp4ny}
