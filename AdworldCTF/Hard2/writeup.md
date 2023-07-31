@@ -4,7 +4,7 @@
 
 ## BABYRE (patchbyte)
 
-![img](AdworldCTF/Hard2/BABYRE-(patchbyte)SOLVED/start.png)
+![img](/AdworldCTF/Hard2/BABYRE-(patchbyte)SOLVED/start.png)
 
 - Bắt đầu vào chương trình với ida64 sau khi đọc qua code hàm main. Ta nhận thấy chương trình sẽ cho chúng ta nhập vào 14 byte tương ứng với flag và gọi hàm `judge(s)` với biến `s` ta sẽ đi đến hàm này để xem chương trình sẽ làm gì.
 
