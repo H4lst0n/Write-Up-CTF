@@ -1,5 +1,5 @@
-Do code có return về jump() nên chỉ cần nhập địa chỉ của flag là nhảy đến đc print flag 
-
+- Do code có return về jump() nên chỉ cần nhập địa chỉ của flag là nhảy đến đc print flag 
+```
 ⚡halston ❯❯ python3
 Python 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
@@ -10,3 +10,4 @@ Type "help", "copyright", "credits" or "license" for more information.
  ⚡halston ❯❯ ./jump.exe
 jump jump jump: 4199680
 flag: CHH{JUMP_T0_TH3_M00N}
+```
