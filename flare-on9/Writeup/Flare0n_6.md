@@ -1,5 +1,5 @@
 # 06_alamode
-
+## SOLUTION
 - Ta được cho 1 file `dll` sau khi ném vào `detect it easy` thì có thể thấy file này được biên dịch sử dụng file library build từ `.NET` và có được biên dịch bằng `C/C++`.
 
     ![img](img/61.png)
@@ -206,6 +206,7 @@
 
     ![img](img/69.png)
 
+## FLAG
 - Ta sẽ patch để chương trình đi qua gen1 và gen2 sau đó sẽ đến genflag để lấy đc flag.
 
     ![img](img/610.png)
