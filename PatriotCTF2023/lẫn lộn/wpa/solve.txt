@@ -1,0 +1,35 @@
+ ⚡halston ❯❯ aircrack-ng savedcap.cap -w /usr/share/wordlists/KaliLists/rockyou
+Reading packets, please wait...
+Opening savedcap.cap
+Read 888 packets.
+
+   #  BSSID              ESSID                     Encryption
+
+   1  52:E2:4D:0A:A6:36  Pctf wifi challenge       WPA (1 handshake)
+
+Choosing first network as target.
+
+Reading packets, please wait...
+Opening savedcap.cap
+Read 888 packets.
+
+1 potential targets
+
+                               Aircrack-ng 1.6
+
+      [00:00:00] 2329/10303728 keys tested (12294.79 k/s)
+
+      Time left: 13 minutes, 57 seconds                          0.02%
+
+                           KEY FOUND! [ qazwsxedc ]
+
+
+      Master Key     : D9 2A 24 C3 1D DB EF C0 58 AF 10 9F F2 F5 DE E9
+                       0C B6 EC F9 59 4E 39 7C 6E 50 E8 B5 3D 61 7E C4
+
+      Transient Key  : 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                       00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                       00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                       00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+      EAPOL HMAC     : 2F F5 73 C8 A5 66 B0 60 7D EF 8F 51 B0 64 F6 65
