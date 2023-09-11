@@ -2,11 +2,11 @@
 
 - Ta được cho 1 file `dll` sau khi ném vào `detect it easy` thì có thể thấy file này được biên dịch sử dụng file library build từ `.NET` và có được biên dịch bằng `C/C++`.
 
-    ![img](/img/61.png)
+    ![img](img/61.png)
 
 - Decompile file dll này ta được source code của nó
 
-    ![img](/img/62.png)
+    ![img](img/62.png)
 
     ```
     // FlareOn_x86, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -43,11 +43,11 @@
 
 - Tiến hành phân tích với `IDA`. Check qua 1 lượt strings thấy có khá nhiều string đáng nghi ngờ. Ta sẽ jump đến các strings xem chúng xử lý như thế nào với các strings này.
 
-    ![img](/img/63.png)
+    ![img](img/63.png)
 
 - Các strings trên được call đến liên tục trong hàm `sub_100014AE()`. Cùng phân tích trong hàm này.
 
-    ![img](/img/64.png)
+    ![img](img/64.png)
 
 - Có thể thấy rằng trong đây nó sẽ thực hiện truyền vào và xor chuỗi với `0x17` sau đó trả về nội dung của chuỗi. Tiến hành decode chúng.
     ```
@@ -124,14 +124,14 @@
     ```
 - Khi mở ida ta được trỏ đến entrypoint nhưng khi check trong CFF ta sẽ có 1 entrypoint khác `0x1000181A`.
 
-    ![img](/img/65.png)
+    ![img](img/65.png)
 
 - Sau khi make code ta có được 1 hàm như sau:
 
-    ![img](/img/66.png)
+    ![img](img/66.png)
 - Trong đây ta sẽ đi vào hàm `sub_100016E4()` tại đây sẽ có 1 hàm xor với 0x17 để ra các kí tự như trên ta đã decrypt.
 
-    ![img](/img/67.png)
+    ![img](img/67.png)
 
 - Sau khi `xor` xong ta sẽ check hàm tiếp theo ở dưới `sub_10001094`
 
@@ -173,7 +173,7 @@
     return 0;
     }
     ```
-    ![img](/img/68.png)
+    ![img](img/68.png)
 - Mục tiêu của chúng ta sẽ là hàm `encrypt()`. Trong đây sẽ gồm key và data sử dụng thuật toán để lấy flag ở gen flag.
     ```
     int __cdecl encrypt(int a1, _DWORD *a2)
@@ -204,9 +204,9 @@
 
 - Ta sẽ debug bằng x32dbg để jmp đến `encrypt` sau đó có thể jmp đến flag được gen. Khi jmp chưa patch thì sẽ gen được key là `MyV0ic3!`
 
-    ![img](/img/69.png)
+    ![img](img/69.png)
 
 - Ta sẽ patch để chương trình đi qua gen1 và gen2 sau đó sẽ đến genflag để lấy đc flag.
 
-    ![img](/img/610.png)
+    ![img](img/610.png)
 - Sau khi đến createThread ta sẽ jump luôn đến genFlag để lấy flag. Vậy Flag là `M1x3d_M0dE_4_l1f3@flare-on.com`
