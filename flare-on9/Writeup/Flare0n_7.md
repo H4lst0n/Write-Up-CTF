@@ -37,6 +37,7 @@
 - Math.random() không trả về giá trị thực sự ngẫu nhiên. (ví dụ: trường hợp mặc định trong câu lệnh switch không bao giờ được thực thi)
  
     ![img](img/7.7.png)
+  
 `Biểu đồ luồng điều khiển (CFG)`
 - Vì vậy chúng ta cần làm luồng điều khiển trở lại ban đầu không bị CFF. Nhìn vào sơ đồ có thể thấy CFG sau khi bị CFF nó sẽ bị làm phẳng ra và sau khi câu lệnh được gọi nó sẽ quay trở lại khối đen (hay còn gọi là khối điều kiện chính) và tiếp tục lặp lại khối này để chọn nhánh tiếp theo hướng đến.
 
