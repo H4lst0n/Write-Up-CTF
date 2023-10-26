@@ -2,11 +2,11 @@
 
 - Ta được cho 1 file `dll` sau khi ném vào `detect it easy` thì có thể thấy file này được biên dịch sử dụng file library build từ `.NET` và có được biên dịch bằng `C/C++`.
 
-    ![img](/img/61.png)
+    ![img](img/61.png)
 
 - Decompile file dll này ta được source code của nó
 
-    ![img](/img/62.png)
+    ![img](img/62.png)
 
     ```
     // FlareOn_x86, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
