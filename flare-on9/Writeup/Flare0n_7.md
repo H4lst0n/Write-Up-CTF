@@ -37,7 +37,6 @@
 - Math.random() không trả về giá trị thực sự ngẫu nhiên. (ví dụ: trường hợp mặc định trong câu lệnh switch không bao giờ được thực thi)
  
     ![img](img/7.7.png)
-  
 `Biểu đồ luồng điều khiển (CFG)`
 - Vì vậy chúng ta cần làm luồng điều khiển trở lại ban đầu không bị CFF. Nhìn vào sơ đồ có thể thấy CFG sau khi bị CFF nó sẽ bị làm phẳng ra và sau khi câu lệnh được gọi nó sẽ quay trở lại khối đen (hay còn gọi là khối điều kiện chính) và tiếp tục lặp lại khối này để chọn nhánh tiếp theo hướng đến.
 
@@ -56,5 +55,31 @@
 - Nhưng chương trình lại chạy sai luồng như ta không mong muốn vì vậy sẽ chuyển hướng sử dụng `Hxd` để sửa hex sau đó thử chạy lại với file exe.
 
     ![img](img/7.9.png)
-    
+
+- Để mỗi lần run chương trình không bị `uh-oh, math.random() is too random...` ta sẽ sửa luồng thực thi của if else như sau
+    ![img](img/7.11.png)
+
+
+- Đến đây ta sẽ sử dụng regex để regex lại các byte ta muốn chỉnh sửa và không bị rác. Vậy ta sẽ thêm vào 2048 lần chỉnh sửa.
+
+    ![img](img/7.10.png)
+
+- Ý tưởng sẽ là regex như sau:
+
+    ```
+    re.sub(b'(b\[\d+\] .= .{10,});', b'console.log("\\1");', js)
+    re.sub(b'Math.floor\(Math\.random\(\) \* 256\)', b'" + Math.floor(Math.random() * 256) + "', new_js)
+    re.sub(b'\n +', b'\n', new_js)
+    ```
+
+## Flag
+
+
+![img](img/7.14.png)
+
+
+```
+⚡ndinh ❯❯ python -u "f:\CTF-2023\flare-on9\07_anode\out\s.py"
+n0tju5t_A_j4vaSCriP7ch4l1eng3@flare-on.com
+```
 
