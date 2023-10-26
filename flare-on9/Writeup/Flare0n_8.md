@@ -4,19 +4,19 @@
 
 - Bước đầu tiên lúc nào cũng là check file. NHận thấy đây là file được biên dịch từ .NET qua exe vì vậy ta sẽ sử dụng dnspy để xem source decompile của nó.
 
-    ![Alt text](img/8.1.png)
+   ![Alt text](8.6.png)
 
 - Có thể thấy nó được sắp xếp không xáo trộn 
 
-    ![Alt text](img/8.2.png)
+    ![Alt text](8.2.png)
 
 - Tất cả các hàm như thế này đều không thể reverse trong dnspy
 
-    ![Alt text](img/8.3.png)
+    ![Alt text](8.3.png)
 
 - Tìm đến main để xem luồng thực thi của chương trình.
 
-    ![Alt text](img/8.4.png)
+    ![Alt text](8.4.png)
 
     ```
     // FlareOn.Backdoor.Program
@@ -62,7 +62,7 @@
 
 - Tại main nó đã call đến flare_74() đầu tiên
 
-    ![Alt text](img/8.5.png)
+    ![Alt text](8.5.png)
 
 - Trong flare_74() sẽ là 1 đống data theo kinh nghiệm dev đề thì chắc chắn đống data này có thể chạy qua thuật toán gen ra png, gif, exe,... 
 
@@ -71,24 +71,24 @@
 
 - flare_74 khác với phần còn lại ở chỗ nó thiếu định dạng ngoại lệ gọi / tạo. Thay vào đó, nó chỉ đơn giản là khởi tạo các biến trong FLARE15.
 
-    ![Alt text](img/8.6.png)
+    ![Alt text](8.6.png)
 
 ### Deobfuscation
 
 - DNSpy sẽ không hiển thị mã được cập nhật khi nó thực thi. Để xem những hàm này đang làm gì, tôi sẽ cần vá tệp nhị phân bằng các hàm chính xác. Điều này có thể đạt được bằng cách lấy từng mảng byte _b và vá các mã thông báo siêu dữ liệu từ từ điển _m. Tôi sẽ lưu từng tệp này vào một tệp có tên patch_bufs.py bằng cách sao chép chúng ra khỏi DNSpy và sử dụng để nhanh chóng định dạng lại chúng thành các tệp Python tương đương.
 
 - Sau khi patch xong ta sẽ lấy được đoạn code đẹp như sau:
-    ![Alt text](img/8.7.png)
+    ![Alt text](8.7.png)
 
 - Nó tạo ra một mutex (để đảm bảo chỉ có một phiên bản chạy tại một thời điểm), tạo đối tượng FLARE13, gọi một vài hàm rồi chuyển sang vòng lặp vô hạn trên FLARE13.cs. FLARE13 trông giống như một loại máy trạng thái. FLARE08 là một cấu trúc enum, có thể là các trạng thái:
 
-    ![Alt text](img/8.8.png)
+    ![Alt text](8.8.png)
 
 - A - H là các giá trị không đổi 0 - 8. loe_50 lấy FLARE07 làm đối số. Trong trường hợp đầu tiên, nó cần một cái tĩnh. Phần còn lại gọi một hàm phải trả về FLARE07.
 
 - Flare_50, giống như hầu hết các hàm còn lại, cố gắng gọi Flare_50, với một ngoại lệ được bắt và chuyển đến Flare_70. Để thực sự hiểu chuyện gì đang xảy ra, tôi cần hiểu cách hoạt động của flame_70. Nó thực sự chỉ là một trình bao bọc để gọi Flared_70 đã được giải mã bởi Flare_71, nhưng trong tệp nhị phân đã vá của tôi, tôi chỉ có thể nhìn vào Flared_70:
 
-    ![Alt text](img/8.9.png)
+    ![Alt text](8.9.png)
 
 - Bốn hàm cục bộ được gọi ở đây đều là những hàm được xử lý bởi flame_71, vì vậy bây giờ chúng đã rõ ràng.
 
@@ -101,10 +101,10 @@
     - Bộ đệm kết quả được chuyển đến bùng lên_67, cùng với mã thông báo siêu dữ liệu và các đối số ban đầu cho hàm.
     - Flare_67 tương tự như Flare_71 nhưng có một số điểm khác biệt. Nó bắt đầu bằng việc xác định một từ điển lớn, tương tự như các biến m từ flame_71. Nó thực hiện công việc tương tự để lấy các biến và tham số cục bộ cho hàm bị hỏng, sau đó lặp qua bộ đệm đầu vào, b. Nó phức tạp hơn một chút trong cách xác định và thay thế mã thông báo, nhưng ở mức độ cao, rõ ràng là nếu trường hợp là FLARE06.OT.B, thì nó thực hiện tương tự như trong flame_71 với mã thông báo, chỉ có điều nó cũng có để áp dụng XOR trước:
 
-    ![Alt text](img/8.10.png)
+    ![Alt text](8.10.png)
 
 - Sau khi lọc xong các strings ta sẽ có được đoạn data như sau:
-    ![Alt text](img/8.11.png)
+    ![Alt text](8.11.png)
 
     ```
     Một số cơ chế của chương trình này sau khi phân tích:
@@ -125,7 +125,7 @@
 
 - Có thể sử dụng đường dẫn này để gọi IMAGE_SECTION_HEADER đối với chỉ mục trong tệp, nếu h.startwith(read(8)) thì tìm vị trí đó, được sử dụng để truy xuất phần sau đó sử dụng phần bù này để tìm kiếm, đọc byte và RC4 và thực hiện điều này.
 
-    ![Alt text](img/8.12.png)
+    ![Alt text](8.12.png)
 
 - Sử dụng tìm kiếm để đặt vị trí mới đọc: ví dụ: 0xB08E00 -> đọc 85 byte thành d.
 
@@ -135,7 +135,7 @@
 
 - Sau đó quay trở lại Flare_69. Lần này sẽ sử dụng ILspy vì không quen với DNspy.
 
-    ![Alt text](img/8.13.png)
+    ![Alt text](8.13.png)
 
 - Func5 (flare_46) (flared_47), size = 0xFA, reversed:used bytes1 (d_b), dict1 (d_m), use and d as parameter
 (RC4) key = p = [0x12, 0x78, 0xAB, 0xDF], d = encrypted, result = decrypted
@@ -147,13 +147,13 @@
 
 - Func 6(flare_67), flared_67, size = 0x412, 0xDDC: used dict3 (), bytes3(cl_b) , (b,tk=0x06000068,o = obj string 0x00 -> agrs)
 
-    ![Alt text](img/8.14.png)
+    ![Alt text](8.14.png)
 
 - Có vẻ như cuộc gọi nhiều lần, Một mảng 'b' dường như có giá trị mới, lệnh gọi trực tiếp flame_76 tới Flare_71, sử dụng các byte trước đó làm mã opcode IL, sử dụng tk làm mã thông báo, có thể là một hàm mới.
 
 - Func7 (flare_68),size = 0x37, reversed:(rt_b). chỉ cần byte dài, chỉ cần đặt mã thông báo cho byte.
 
-    ![Alt text](img/8.15.png)
+    ![Alt text](8.15.png)
 
     ````
     ^0x.[0-9A-F]$
@@ -233,4 +233,4 @@
     ```
 
 - Flag:
-    ![Alt text](img/flag8.png)
+    ![Alt text](flag8.png)
