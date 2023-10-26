@@ -48,7 +48,7 @@ console.log(WORDS[57])
 
 ## Flag
 
-![flag01](/img/flag01.png)
+![flag01](img/flag01.png)
 
 
 # 02_PixelPoker
@@ -206,7 +206,7 @@ if ( (__int16)lParam == dword_412004 % (unsigned int)dword_413280 )
 
 ## Flag
 
-![flag02](/img/flag02.png)
+![flag02](img/flag02.png)
 
 # 03_magic8ball
 
@@ -295,11 +295,11 @@ if ( !result ){
 ```
 - Tại đây nó cũng call đến địa chỉ `[edi+5Ch]` để cmp strings vì vậy đây chính là chuỗi `gimme flag pls?`.
 
-![flag03](/img/ad03.png)
+![flag03](img/ad03.png)
 
 ## Flag
 
-![flag03](/img/flag03.png)
+![flag03](img/flag03.png)
 
 
 # 04_darn_mice
@@ -370,4 +370,4 @@ print("".join([chr(0xC3 - m) for m in v5]))
 
 ## Flag
 
-![flag04](/img/flag04.png)
+![flag04](img/flag04.png)
