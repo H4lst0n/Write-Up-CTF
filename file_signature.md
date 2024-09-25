@@ -239,7 +239,7 @@ This gives an ongoing list of file-type magic numbers.
 </tr>
 </table>
 
-##Miscellaneous files
+## Miscellaneous files
 
 <table border=1>
 <tr>
@@ -280,4 +280,3 @@ This gives an ongoing list of file-type magic numbers.
 
 
 
-<a href="http://www.astro.keele.ac.uk/oldusers/rno/Computing/File_magic.html#Image">Source</a>
